@@ -38,7 +38,17 @@
     a { color: var(--teal); text-underline-offset: 3px; }
     a:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 2px; }
 
-    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
+    .wrap { max-width: 76rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+
+    .layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+    .layout nav { position: sticky; top: 2rem; padding-top: 2.5rem; font-size: 1rem; }
+    .layout nav ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+    .layout nav li a { display: block; padding: 0.35rem 0 0.35rem 1rem; margin-left: -2px; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; }
+    .layout nav li a:hover { color: var(--ink); border-left-color: var(--red); }
+    @media (max-width: 56rem) {
+      .layout { display: block; }
+      .layout nav { display: none; }
+    }
 
     header.site { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--line); }
     header.site h1 { font-size: clamp(2.6rem, 8vw, 4.2rem); letter-spacing: -0.02em; margin-bottom: 0.3em; }
@@ -94,7 +104,20 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <div class="wrap layout">
+  <nav aria-label="On this page">
+    <ul>
+      <li><a href="#what-is-hiv">What is HIV?</a></li>
+      <li><a href="#origin">Where it came from</a></li>
+      <li><a href="#how-hiv-works">What it does</a></li>
+      <li><a href="#treatment">Treatment</a></li>
+      <li><a href="#transmission">How it spreads</a></li>
+      <li><a href="#prevention">Prevention</a></li>
+      <li><a href="#timeline">History</a></li>
+      <li><a href="#myths-and-facts">Myths and facts</a></li>
+    </ul>
+  </nav>
+  <main>
     <section id="what-is-hiv">
       <h2>What is HIV?</h2>
       <p>
@@ -277,6 +300,7 @@
       </div>
     </section>
   </main>
+  </div>
 
   <footer>
     <div class="wrap">
@@ -285,4 +309,3 @@
   </footer>
 </body>
 </html>
-
