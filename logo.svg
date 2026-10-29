@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">HIV Positivity logo</title>
+  <desc id="desc">A coral heart with a warm golden ribbon loop and a teal spark, symbolising care, solidarity and hope.</desc>
+  <defs>
+    <linearGradient id="heart" x1="20" y1="22" x2="100" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff8174"/><stop offset="1" stop-color="#e7494c"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="60" fill="#fff0ed"/>
+  <path d="M64 103C55 95 25 75 25 49c0-15 18-24 31-12l8 8 8-8c13-12 31-3 31 12 0 26-30 46-39 54Z" fill="url(#heart)"/>
+  <path d="M40 53c0-8 7-14 15-11" fill="none" stroke="#ffd8cf" stroke-width="5" stroke-linecap="round"/>
+  <path d="M49 64c5-8 13-13 23-15 10-2 17 3 17 10 0 10-14 13-25 13-10 0-17 4-17 11 0 7 8 11 18 9" fill="none" stroke="#f8ce72" stroke-width="7" stroke-linecap="round"/>
+  <path d="M97 22v14M90 29h14" stroke="#147d78" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="29" cy="89" r="4" fill="#147d78"/>
+</svg>
