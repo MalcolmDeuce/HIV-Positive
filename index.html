@@ -1,56 +1,288 @@
 <!DOCTYPE html>
-<html>
-    <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>HIV Positivity</title>
-    </head>
-    <body>
-       <h1>HIV Positivity</h1>
-       <h2>What is HIV?</h2>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HIV Positivity</title>
+  <meta name="description" content="Plain-language facts about HIV: what it is, how it spreads, how treatment works, and why stigma harms us all.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1c2b33;
+      --muted: #52646e;
+      --paper: #f8fafb;
+      --line: #d5dee3;
+      --red: #b3122b;
+      --teal: #0e5f63;
+      --teal-tint: #e3f0f0;
+      --red-tint: #fbe9ec;
+      box-sizing: border-box;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.65;
+    }
+    h1, h2, h3 {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
+      line-height: 1.15;
+      margin: 0 0 0.5em;
+    }
+    a { color: var(--teal); text-underline-offset: 3px; }
+    a:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 2px; }
 
-        HIV, which stands for <b>Human Immunodeficiency Virus</b> is a deadly virus that weakens the immune system.  
+    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
 
+    header.site { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--line); }
+    header.site h1 { font-size: clamp(2.6rem, 8vw, 4.2rem); letter-spacing: -0.02em; margin-bottom: 0.3em; }
+    header.site p { font-size: 1.3rem; color: var(--muted); max-width: 34rem; margin: 0; }
 
-        <P>
-            HIV is a commonly misunderstood virus that has many misconceptions and myths surrounding it. As such, it is very important for knowledge
-            and awareness be spread among the wider community in order to avoid unnecessary panic and discrimination towards those living with the virus.
-            <br><br>
-            The fact is that <i>HIV is among us</i> and that <u>people in our community are living healthy and long lives with the virus</u> but more work of spreading awareness
-            of the virus needs to be done not only to reduce its spread but to also reduce the stigma towards those living with HIV. The human body can’t get rid of HIV and no effective HIV cure currently exists. So, once you have HIV, you have it for life.
-            Luckily, however, effective treatment with HIV medicine called <b>antiretroviral therapy (ART) </b> is available. <br>If taken as prescribed, HIV medicine can reduce the amount of HIV in the blood (the viral load) to a very low level. This is called viral suppression. If a person’s viral load is so low that a standard lab can’t detect it, this is called having an undetectable viral load. People living with HIV who take HIV medicine as prescribed and get and keep an undetectable viral load can live long and healthy lives and will not transmit HIV to their HIV-negative partners through sex. 
-            That is U=U, Undetectable=Untransmittable.
-            <br>
-            For more info, kindly visit <a href="https://www.hiv.gov" target="_blank">this official website by the Department of Health of the Federal U.S. Government.</a>
-            <br>
-            <br>
-            <br>
-            
-            <img src="support.png" border="10"> 
-        </P>
+    section { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
+    section h2 { font-size: 1.9rem; }
+    p { margin: 0 0 1.1em; max-width: 40rem; }
 
-        <u><b>Ways by which HIV can be transmitted</b></u>
-        <ul>
-            <li>Unprotected sexual intercourse</li>
-            <li>Sharing of injection needles</li>
-            <li><b>In rare cases, mother-child transmission can occur during birth when there's exchange of bodily fluids from a HIV +ve mother to a HIV -ve child</b></li>
-        </ul>
+    .callout {
+      background: var(--teal);
+      color: #fff;
+      padding: 1.75rem 1.75rem 1.5rem;
+      border-radius: 6px;
+      margin: 1.75rem 0;
+    }
+    .callout .big { font-family: "Fraunces", Georgia, serif; font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; line-height: 1.1; margin: 0 0 0.4em; }
+    .callout p { margin: 0; max-width: none; }
 
-        <br>    
-        <u><b>Myths vs Facts of HIV</b></u>
-        <ul>
-            <li> Myths</li>
-            <ul> 
-                <li> HIV is curable.</li>
-                <li> HIV is a curse.</li>
-            </ul>
-            <li> Facts</li>
-            <ul>
-                <li> HIV can be prevented.</li>
-                <li> HIV can be managed.</li>
-            </ul>
-        </ul>
-    </body>
-<b> Copyright ©2026 by Malcolm Deuce. </b>
+    figure { margin: 2rem 0 0; }
+    figure img { display: block; max-width: 100%; height: auto; border-radius: 6px; }
+    figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.5rem; }
+
+    ul.plain { padding-left: 1.2rem; margin: 0 0 1.1em; }
+    ul.plain li { margin-bottom: 0.5em; padding-left: 0.2rem; }
+
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.25rem; }
+    .compare > div { padding: 1.25rem 1.4rem; border-radius: 6px; border-left: 5px solid; }
+    .compare h3 { font-size: 1.3rem; }
+    .compare ul { margin: 0; padding-left: 1.1rem; }
+    .compare li { margin-bottom: 0.4em; }
+    .myths { background: var(--red-tint); border-color: var(--red); }
+    .facts { background: var(--teal-tint); border-color: var(--teal); }
+    @media (max-width: 36rem) { .compare { grid-template-columns: 1fr; } }
+
+    .note { background: #eef2f4; border-left: 5px solid var(--muted); padding: 1rem 1.25rem; border-radius: 6px; margin: 1.5rem 0; }
+    .note p { margin: 0; max-width: none; }
+
+    dl.timeline { margin: 1.25rem 0 0; border-left: 2px solid var(--line); padding-left: 1.25rem; }
+    dl.timeline dt { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--teal); margin-top: 1.1rem; }
+    dl.timeline dt:first-child { margin-top: 0; }
+    dl.timeline dd { margin: 0.15rem 0 0; max-width: 38rem; }
+
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
+    footer p { margin: 0; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1>HIV Positivity</h1>
+      <p>Clear facts, less fear. Knowing the truth about HIV protects those living with it and everyone around them.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="what-is-hiv">
+      <h2>What is HIV?</h2>
+      <p>
+        HIV stands for <strong>Human Immunodeficiency Virus</strong>. It is a virus that attacks the body's immune system,
+        the part of the body that fights off illness.
+      </p>
+      <p>
+        HIV is one of the most misunderstood viruses. Myths and rumours cause unnecessary panic and discrimination
+        against people living with it. Spreading accurate knowledge is the best way to end that.
+      </p>
+      <p>
+        HIV is among us. Many people in our community are living healthy, long lives with the virus. More awareness
+        is still needed, both to reduce new infections and to reduce the stigma people face.
+      </p>
+
+      <figure>
+        <img src="support.png" alt="People showing support for those living with HIV" width="640">
+      </figure>
+    </section>
+
+    <section id="origin">
+      <h2>Where did HIV come from?</h2>
+      <p>
+        Scientists have traced HIV back to animals. It is a <em>zoonosis</em>, meaning an infection that began in
+        animals and later passed to people. Its ancestor is <strong>SIV</strong> (simian immunodeficiency virus),
+        a virus that infects monkeys and apes in Africa.
+      </p>
+      <p>
+        There are two main types of HIV, and each came from a different animal:
+      </p>
+      <ul class="plain">
+        <li>
+          <strong>HIV-1</strong> is the type behind most infections worldwide. Its closest relatives are SIV found in
+          chimpanzees (SIVcpz) and, for a few rare groups, in gorillas (SIVgor), in forests of Cameroon and neighbouring countries.
+        </li>
+        <li>
+          <strong>HIV-2</strong> came from SIV in sooty mangabeys, a monkey of West Africa. It is less easily passed on
+          and is found mostly in West Africa.
+        </li>
+      </ul>
+      <p>
+        The jump from animal to human happened on <em>several separate occasions</em>, which is why HIV-1 has four
+        groups (M, N, O and P). Only group M spread across the world. The others stayed mostly in Central Africa.
+      </p>
+      <h3>How did the virus cross over?</h3>
+      <p>
+        The most widely accepted explanation is the &ldquo;hunter&rdquo; theory. People hunted and butchered chimpanzees
+        for meat, and a cut on the hand could let infected blood enter the person's body. Usually the body would
+        fight off an animal virus like SIV. On a few rare occasions, the virus adapted to its new human host and became HIV.
+      </p>
+      <h3>When and where did the pandemic begin?</h3>
+      <p>
+        Genetic studies suggest that HIV-1 group M began spreading in humans around <strong>1920</strong> in
+        Kinshasa, then part of the Belgian Congo (today the Democratic Republic of the Congo). The oldest HIV sample
+        scientists have found comes from a blood sample taken in Kinshasa in 1959.
+      </p>
+      <p>
+        For decades the virus spread slowly. Researchers think a mix of factors then helped it take off: rapid city growth,
+        new railways that moved large numbers of people, and big changes in society in the 1950s and 1960s. From
+        Central Africa it later reached the rest of the world.
+      </p>
+      <div class="note">
+        <p>
+          <strong>Nobody is to blame.</strong> A virus crossing between species is a natural event, and it says nothing
+          about any person, group or country today. Be wary of rumours that HIV was created on purpose or spread
+          through a vaccine. Scientific evidence does not support these claims.
+        </p>
+      </div>
+    </section>
+
+    <section id="how-hiv-works">
+      <h2>What HIV does to the body</h2>
+      <p>
+        The immune system uses white blood cells called <strong>CD4 cells</strong> to fight infections. HIV enters these
+        cells, makes copies of itself and destroys them. Over time, with no treatment, the body has fewer and fewer CD4
+        cells and can no longer fight off illnesses that a healthy body would handle easily.
+      </p>
+      <p>
+        <strong>AIDS</strong> (Acquired Immunodeficiency Syndrome) is the most advanced stage of HIV infection. HIV and AIDS
+        are not the same thing. A person with HIV does not have AIDS, and with treatment most people never reach
+        that stage.
+      </p>
+    </section>
+
+    <section id="treatment">
+      <h2>Treatment works</h2>
+      <p>
+        The body cannot get rid of HIV, and there is currently no cure. Once a person has HIV, they have it for life.
+        The good news is that effective treatment exists. It is a daily medicine called
+        <strong>antiretroviral therapy (ART)</strong>.
+      </p>
+      <p>
+        Taken as prescribed, ART lowers the amount of virus in the blood (the <em>viral load</em>) to a very low level.
+        This is called <em>viral suppression</em>. When the level is so low that a standard lab test cannot detect it,
+        the person has an <em>undetectable viral load</em>.
+      </p>
+
+      <div class="callout">
+        <p class="big">U = U</p>
+        <p>
+          <strong>Undetectable = Untransmittable.</strong> People who take their HIV medicine as prescribed and keep an
+          undetectable viral load can live long, healthy lives and cannot pass HIV to their partners through sex.
+        </p>
+      </div>
+
+      <p>
+        For more information, visit
+        <a href="https://www.hiv.gov" target="_blank" rel="noopener noreferrer">HIV.gov</a>,
+        the official website of the U.S. Department of Health and Human Services.
+      </p>
+    </section>
+
+    <section id="transmission">
+      <h2>How HIV is passed on</h2>
+      <p>HIV spreads only through certain body fluids, and only in specific ways:</p>
+      <ul class="plain">
+        <li>Sex without a condom or other protection</li>
+        <li>Sharing needles or syringes</li>
+        <li>From a mother to her baby during pregnancy, birth or breastfeeding. With the right treatment, this risk is very low.</li>
+      </ul>
+      <p>
+        HIV is <strong>not</strong> passed on by hugging, shaking hands, sharing food or cups, or sharing a toilet.
+      </p>
+    </section>
+
+    <section id="prevention">
+      <h2>Prevention and testing</h2>
+      <p>HIV can be prevented. These are the main ways to protect yourself and others:</p>
+      <ul class="plain">
+        <li><strong>Test regularly.</strong> Testing is the only way to know your status. Early treatment protects your health and your partners.</li>
+        <li><strong>Use condoms</strong> correctly every time you have sex.</li>
+        <li><strong>Never share needles or syringes.</strong></li>
+        <li><strong>PrEP</strong> is a medicine that people who do not have HIV can take to lower their risk of getting it.</li>
+        <li><strong>PEP</strong> is emergency medicine taken after a possible exposure. It must be started as soon as possible, within 72 hours.</li>
+        <li><strong>Pregnant women</strong> with HIV who take treatment can greatly lower the chance of passing HIV to their baby.</li>
+      </ul>
+      <p>
+        If you are worried about a possible exposure, visit a nearby clinic or health worker for advice and a test.
+      </p>
+    </section>
+
+    <section id="timeline">
+      <h2>A short history</h2>
+      <dl class="timeline">
+        <dt>About 1920</dt>
+        <dd>HIV-1 group M begins to spread among people in Kinshasa.</dd>
+        <dt>1981</dt>
+        <dd>Doctors in the United States report the first recognised cases of what would later be called AIDS.</dd>
+        <dt>1983&ndash;1986</dt>
+        <dd>Scientists identify the virus that causes AIDS, and in 1986 it is named HIV.</dd>
+        <dt>1996</dt>
+        <dd>Combination antiretroviral therapy becomes available, turning HIV from a usually fatal illness into a manageable condition.</dd>
+        <dt>Today</dt>
+        <dd>People on effective treatment live long, healthy lives, and U=U shows that they cannot pass HIV on through sex.</dd>
+      </dl>
+    </section>
+
+    <section id="myths-and-facts">
+      <h2>Myths and facts</h2>
+      <div class="compare">
+        <div class="myths">
+          <h3>Myths</h3>
+          <ul>
+            <li>HIV is curable.</li>
+            <li>HIV is a curse.</li>
+            <li>You can get HIV from hugging or sharing a cup.</li>
+            <li>HIV and AIDS are the same thing.</li>
+          </ul>
+        </div>
+        <div class="facts">
+          <h3>Facts</h3>
+          <ul>
+            <li>HIV can be prevented.</li>
+            <li>HIV can be managed with treatment.</li>
+            <li>HIV is a virus that began in animals and spread between people. It is not a curse.</li>
+            <li>Everyday contact is safe.</li>
+            <li>AIDS is the late stage of HIV, and treatment prevents it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>&copy; 2026 Malcolm Deuce. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
 </html>
 
