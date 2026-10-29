@@ -3,396 +3,511 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HIV Positivity</title>
+  <meta name="theme-color" content="#fff8f3">
+  <title>HIV Positivity — Clear facts. More hope.</title>
   <meta name="description" content="Plain-language facts about HIV: what it is, how it spreads, how treatment works, and why stigma harms us all.">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1c2b33;
-      --muted: #52646e;
-      --paper: #f8fafb;
-      --line: #d5dee3;
-      --red: #b3122b;
-      --teal: #0e5f63;
-      --teal-tint: #e3f0f0;
-      --red-tint: #fbe9ec;
-      box-sizing: border-box;
+      --ink: #27243a;
+      --muted: #686579;
+      --paper: #fffaf6;
+      --surface: #ffffff;
+      --line: #eee4df;
+      --coral: #f05a55;
+      --coral-dark: #d94345;
+      --coral-soft: #fff0ed;
+      --plum: #4a2858;
+      --plum-soft: #f2eaf5;
+      --teal: #147d78;
+      --teal-soft: #e5f5f1;
+      --gold: #f4c66a;
+      --shadow: 0 18px 55px rgba(65, 38, 57, .09);
+      --radius: 22px;
+      --max: 1180px;
     }
-    *, *::before, *::after { box-sizing: inherit; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
-      font-size: 1.125rem;
-      line-height: 1.65;
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif; font-size: 16px; line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3 {
-      font-family: "Fraunces", Georgia, "Times New Roman", serif;
-      line-height: 1.15;
-      margin: 0 0 0.5em;
+    body.menu-open { overflow: hidden; }
+    a { color: var(--teal); text-underline-offset: 4px; }
+    a:hover { color: var(--coral-dark); }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+    img, svg { max-width: 100%; }
+    button { font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin-inline: auto; }
+    .skip-link { position: absolute; top: -100px; left: 1rem; z-index: 1000; background: white; padding: .8rem 1rem; border-radius: 10px; }
+    .skip-link:focus { top: 1rem; }
+    .topline { height: 5px; background: linear-gradient(90deg, var(--coral) 0 38%, var(--gold) 38% 62%, var(--teal) 62% 100%); }
+    .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,250,246,.91); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(238,228,223,.85); }
+    .nav-bar { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; font-family: Manrope, sans-serif; font-weight: 800; letter-spacing: -.045em; font-size: 1.22rem; white-space: nowrap; }
+    .brand img { width: 44px; height: 44px; }
+    .brand span em { color: var(--coral); font-style: normal; }
+    .nav-links { display: flex; align-items: center; gap: 23px; margin: 0; padding: 0; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .88rem; font-weight: 700; transition: color .2s ease; }
+    .nav-links a:hover { color: var(--coral-dark); }
+    .nav-links .nav-cta { color: white; background: var(--plum); padding: 11px 17px; border-radius: 999px; }
+    .nav-links .nav-cta:hover { background: var(--coral-dark); color: white; }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 13px; width: 46px; height: 44px; color: var(--ink); cursor: pointer; }
+    .hero { position: relative; overflow: hidden; padding: clamp(68px, 9vw, 122px) 0 82px; }
+    .hero::before { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; right: -120px; top: -150px; background: var(--coral-soft); z-index: -1; }
+    .hero::after { content: ""; position: absolute; width: 170px; height: 170px; border-radius: 50%; right: 20%; bottom: -110px; background: var(--teal-soft); z-index: -1; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr); gap: clamp(38px, 7vw, 100px); align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--coral-dark); background: var(--coral-soft); border: 1px solid #ffded8; border-radius: 999px; padding: 7px 13px; font-size: .77rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 800; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--coral); border-radius: 50%; box-shadow: 0 0 0 4px rgba(240,90,85,.12); }
+    h1, h2, h3 { font-family: Manrope, sans-serif; line-height: 1.15; letter-spacing: -.045em; }
+    h1 { font-size: clamp(3.2rem, 7vw, 6.1rem); margin: 24px 0 22px; font-weight: 800; max-width: 760px; }
+    h1 .accent { color: var(--coral); position: relative; white-space: nowrap; }
+    h1 .accent::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 8px; border-radius: 50%; background: var(--gold); opacity: .75; transform: rotate(-1.5deg); z-index: -1; }
+    .hero-copy { font-size: clamp(1.05rem, 1.5vw, 1.23rem); color: var(--muted); max-width: 590px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 999px; padding: 14px 21px; text-decoration: none; font-weight: 800; font-size: .94rem; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; border: 1px solid transparent; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: white; background: var(--coral); box-shadow: 0 10px 24px rgba(240,90,85,.22); }
+    .btn-primary:hover { color: white; background: var(--coral-dark); box-shadow: 0 14px 30px rgba(240,90,85,.3); }
+    .btn-secondary { color: var(--plum); background: white; border-color: var(--line); }
+    .btn-secondary:hover { color: var(--plum); box-shadow: var(--shadow); }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 28px; color: var(--muted); font-size: .86rem; }
+    .hero-note .heart { color: var(--coral); font-size: 1.2rem; }
+    .hero-art { min-height: 420px; display: grid; place-items: center; position: relative; }
+    .orbit { position: absolute; width: min(100%, 410px); aspect-ratio: 1; border: 1px dashed #e6c9d8; border-radius: 50%; animation: slow-spin 38s linear infinite; }
+    .orbit::before, .orbit::after { content: ""; position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); top: 12%; left: 18%; box-shadow: 0 0 0 8px rgba(244,198,106,.17); }
+    .orbit::after { top: auto; left: auto; bottom: 13%; right: 12%; width: 12px; height: 12px; background: var(--teal); box-shadow: 0 0 0 7px rgba(20,125,120,.12); }
+    .hero-card { width: min(100%, 340px); padding: 30px; border-radius: 30px; color: white; background: linear-gradient(145deg, #552b63, #362344); box-shadow: 0 28px 65px rgba(74,40,88,.23); position: relative; transform: rotate(2deg); }
+    .hero-card .mini-label { color: #f8c9c3; font-size: .75rem; letter-spacing: .13em; text-transform: uppercase; font-weight: 800; }
+    .hero-card h2 { font-size: 2.4rem; margin: 18px 0 10px; }
+    .hero-card p { color: #e9dfea; margin: 0; font-size: .98rem; }
+    .hero-card .card-mark { width: 62px; height: 62px; display: grid; place-items: center; border-radius: 20px; background: rgba(255,255,255,.12); margin-bottom: 22px; }
+    .hero-card .card-mark img { width: 48px; height: 48px; }
+    .floating-pill { position: absolute; background: white; border: 1px solid var(--line); border-radius: 16px; padding: 12px 15px; box-shadow: var(--shadow); font-size: .85rem; font-weight: 800; }
+    .floating-pill span { display: block; font-size: .72rem; color: var(--muted); font-weight: 600; }
+    .pill-top { top: 14%; right: -2%; transform: rotate(4deg); }
+    .pill-bottom { bottom: 11%; left: -2%; transform: rotate(-4deg); }
+    .trust-strip { border-block: 1px solid var(--line); background: rgba(255,255,255,.65); }
+    .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; padding: 22px 0; }
+    .trust-item { display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: .9rem; }
+    .trust-icon { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border-radius: 13px; color: var(--teal); background: var(--teal-soft); font-size: 1.1rem; }
+    .page-grid { display: grid; grid-template-columns: 225px minmax(0,1fr); gap: 54px; align-items: start; padding-top: 54px; padding-bottom: 90px; }
+    .side-nav { position: sticky; top: 108px; padding: 21px 16px; border: 1px solid var(--line); background: rgba(255,255,255,.72); border-radius: 20px; }
+    .side-nav .side-title { margin: 0 0 13px 10px; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 800; }
+    .side-nav ul { list-style: none; margin: 0; padding: 0; }
+    .side-nav a { display: block; color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 10px; font-size: .85rem; font-weight: 700; transition: .2s ease; }
+    .side-nav a:hover, .side-nav a.active { background: var(--coral-soft); color: var(--coral-dark); }
+    main { min-width: 0; }
+    .content-section { padding: 0 0 54px; margin: 0 0 54px; border-bottom: 1px solid var(--line); scroll-margin-top: 112px; }
+    .section-kicker { color: var(--teal); text-transform: uppercase; font-size: .74rem; letter-spacing: .14em; font-weight: 800; margin-bottom: 10px; }
+    h2 { font-size: clamp(2rem, 3.7vw, 3rem); margin: 0 0 20px; }
+    h3 { font-size: 1.28rem; margin: 30px 0 12px; }
+    p { margin: 0 0 17px; color: #4f4b60; }
+    strong { color: var(--ink); }
+    .intro-copy { font-size: 1.1rem; color: #49455a; }
+    .inline-highlight { color: var(--coral-dark); font-weight: 800; }
+    .info-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin: 25px 0; }
+    .info-card { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 22px; transition: transform .2s ease, box-shadow .2s ease; }
+    .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .info-card .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; background: var(--plum-soft); color: var(--plum); font-size: 1.25rem; margin-bottom: 16px; }
+    .info-card h3 { margin: 0 0 8px; }
+    .info-card p { margin: 0; font-size: .95rem; }
+    .callout { margin: 28px 0; padding: clamp(25px,4vw,42px); border-radius: 24px; background: linear-gradient(135deg, var(--plum), #613a6c); color: white; position: relative; overflow: hidden; }
+    .callout::after { content: "U=U"; position: absolute; right: -8px; bottom: -48px; font-family: Manrope,sans-serif; font-size: 9rem; font-weight: 800; color: rgba(255,255,255,.055); letter-spacing: -.1em; pointer-events: none; }
+    .callout .big { color: var(--gold); font-family: Manrope,sans-serif; font-size: clamp(3rem,7vw,5rem); font-weight: 800; line-height: 1; letter-spacing: -.07em; margin: 0 0 18px; }
+    .callout p { color: #f4eaf6; max-width: 700px; position: relative; z-index: 1; margin: 0; }
+    .callout strong { color: white; }
+    .note { display: flex; gap: 15px; padding: 20px 22px; border-radius: 16px; background: #fff6e4; border: 1px solid #f5e3bb; margin: 25px 0; }
+    .note .note-icon { font-size: 1.3rem; line-height: 1.5; }
+    .note p { margin: 0; color: #66543a; }
+    ul.plain { padding-left: 1.3rem; margin: 0 0 20px; color: #4f4b60; }
+    ul.plain li { padding-left: .25rem; margin: 0 0 10px; }
+    ul.plain li::marker { color: var(--coral); }
+    .myth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px; }
+    .myth-card { border-radius: 20px; padding: 24px; }
+    .myth-card h3 { margin: 0 0 15px; display: flex; align-items: center; gap: 10px; }
+    .myth-card ul { padding-left: 1.2rem; margin: 0; color: #4f4b60; }
+    .myth-card li { padding-left: .2rem; margin-bottom: 11px; }
+    .myth-card li:last-child { margin-bottom: 0; }
+    .myths { background: var(--coral-soft); border: 1px solid #ffded8; }
+    .facts { background: var(--teal-soft); border: 1px solid #cce9e3; }
+    .myths h3 { color: var(--coral-dark); }
+    .facts h3 { color: var(--teal); }
+    .timeline { margin: 30px 0 0; padding: 0; list-style: none; position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 75px; top: 7px; bottom: 7px; width: 2px; background: #ead9e8; }
+    .timeline li { display: grid; grid-template-columns: 58px 1fr; gap: 38px; position: relative; padding-bottom: 28px; }
+    .timeline li::before { content: ""; position: absolute; left: 69px; top: 7px; width: 14px; height: 14px; border-radius: 50%; background: var(--coral); border: 3px solid var(--paper); box-shadow: 0 0 0 2px #f2c8c7; }
+    .timeline time { color: var(--teal); font-weight: 800; font-size: .88rem; padding-top: 1px; }
+    .timeline h3 { margin: 0 0 6px; font-size: 1.1rem; letter-spacing: -.02em; }
+    .timeline p { margin: 0; font-size: .95rem; }
+    .source-links { font-size: .9rem; padding-top: 8px; }
+    .source-links a { font-weight: 700; }
+    details { border: 1px solid var(--line); background: white; border-radius: 14px; padding: 15px 18px; margin: 12px 0; }
+    summary { cursor: pointer; color: var(--ink); font-weight: 800; }
+    details p { margin: 12px 0 0; }
+    .section-end { display: flex; align-items: center; gap: 9px; color: var(--teal); font-weight: 800; font-size: .9rem; margin-top: 28px; }
+    .section-end::before { content: "✳"; color: var(--coral); font-size: 1.1rem; }
+    .footer { background: #2d2037; color: #f6edf8; padding: 48px 0 28px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 35px; padding-bottom: 32px; }
+    .footer .brand { color: white; }
+    .footer p { color: #d5c7dc; max-width: 460px; font-size: .92rem; margin-top: 14px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px 22px; }
+    .footer-links a { color: #f3d4d0; font-size: .88rem; font-weight: 700; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.14); padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; color: #c5b5cc; font-size: .8rem; }
+    .back-top { position: fixed; right: 22px; bottom: 22px; z-index: 30; width: 46px; height: 46px; border: 0; border-radius: 15px; color: white; background: var(--coral); box-shadow: 0 8px 24px rgba(240,90,85,.3); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(10px); transition: .2s ease; font-size: 1.2rem; }
+    .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    @keyframes slow-spin { to { transform: rotate(360deg); } }
+    @media (max-width: 980px) {
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .82rem; }
+      .page-grid { grid-template-columns: 190px minmax(0,1fr); gap: 32px; }
+      .hero-grid { gap: 30px; }
+      .hero-art { min-height: 360px; }
     }
-    a { color: var(--teal); text-underline-offset: 3px; }
-    a:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 2px; }
-
-    .wrap { max-width: 76rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
-
-    .layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 3.5rem; align-items: start; }
-    .layout nav { position: sticky; top: 2rem; padding-top: 2.5rem; font-size: 1rem; }
-    .layout nav ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
-    .layout nav li a { display: block; padding: 0.35rem 0 0.35rem 1rem; margin-left: -2px; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; }
-    .layout nav li a:hover { color: var(--ink); border-left-color: var(--red); }
-    @media (max-width: 56rem) {
-      .layout { display: block; }
-      .layout nav { display: none; }
+    @media (max-width: 780px) {
+      .wrap { width: min(var(--max), calc(100% - 34px)); }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links { display: none; position: fixed; inset: 82px 0 auto; background: var(--paper); border-bottom: 1px solid var(--line); padding: 18px 22px 24px; box-shadow: var(--shadow); flex-direction: column; align-items: stretch; gap: 3px; max-height: calc(100vh - 82px); overflow-y: auto; }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 11px 12px; font-size: .98rem; }
+      .nav-links .nav-cta { text-align: center; margin-top: 8px; }
+      .hero { padding-top: 62px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 390px; margin-top: -10px; }
+      .hero-copy { max-width: 620px; }
+      .page-grid { display: block; padding-top: 42px; }
+      .side-nav { display: none; }
+      .trust-grid { gap: 12px; }
+      .trust-item { flex-direction: column; text-align: center; font-size: .78rem; gap: 7px; }
+      .footer-top { flex-direction: column; }
     }
-
-    header.site { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--line); }
-    header.site h1 { font-size: clamp(2.6rem, 8vw, 4.2rem); letter-spacing: -0.02em; margin-bottom: 0.3em; }
-    header.site p { font-size: 1.3rem; color: var(--muted); max-width: 34rem; margin: 0; }
-
-    section { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
-    section h2 { font-size: 1.9rem; }
-    p { margin: 0 0 1.1em; max-width: 40rem; }
-
-    .callout {
-      background: var(--teal);
-      color: #fff;
-      padding: 1.75rem 1.75rem 1.5rem;
-      border-radius: 6px;
-      margin: 1.75rem 0;
+    @media (max-width: 520px) {
+      .brand { font-size: 1.05rem; gap: 8px; }
+      .brand img { width: 38px; height: 38px; }
+      h1 { font-size: clamp(2.8rem, 14vw, 4.2rem); }
+      .hero-actions { align-items: stretch; flex-direction: column; max-width: 320px; }
+      .hero-actions .btn { width: 100%; }
+      .hero-art { min-height: 335px; }
+      .orbit { width: 310px; }
+      .hero-card { max-width: 285px; padding: 24px; }
+      .hero-card h2 { font-size: 2rem; }
+      .pill-top { right: -1%; top: 8%; }
+      .pill-bottom { left: -1%; bottom: 5%; }
+      .trust-grid { grid-template-columns: repeat(3,1fr); }
+      .info-grid, .myth-grid { grid-template-columns: 1fr; }
+      .content-section { padding-bottom: 38px; margin-bottom: 38px; }
+      .timeline::before { left: 62px; }
+      .timeline li { grid-template-columns: 46px 1fr; gap: 30px; }
+      .timeline li::before { left: 56px; }
+      .footer-bottom { flex-direction: column; gap: 5px; }
     }
-    .callout .big { font-family: "Fraunces", Georgia, serif; font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; line-height: 1.1; margin: 0 0 0.4em; }
-    .callout p { margin: 0; max-width: none; }
-
-    figure { margin: 2rem 0 0; }
-    figure img { display: block; max-width: 100%; height: auto; border-radius: 6px; }
-    figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.5rem; }
-
-    ul.plain { padding-left: 1.2rem; margin: 0 0 1.1em; }
-    ul.plain li { margin-bottom: 0.5em; padding-left: 0.2rem; }
-
-    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.25rem; }
-    .compare > div { padding: 1.25rem 1.4rem; border-radius: 6px; border-left: 5px solid; }
-    .compare h3 { font-size: 1.3rem; }
-    .compare ul { margin: 0; padding-left: 1.1rem; }
-    .compare li { margin-bottom: 0.4em; }
-    .myths { background: var(--red-tint); border-color: var(--red); }
-    .facts { background: var(--teal-tint); border-color: var(--teal); }
-    @media (max-width: 36rem) { .compare { grid-template-columns: 1fr; } }
-
-    .note { background: #eef2f4; border-left: 5px solid var(--muted); padding: 1rem 1.25rem; border-radius: 6px; margin: 1.5rem 0; }
-    .note p { margin: 0; max-width: none; }
-
-    dl.timeline { margin: 1.25rem 0 0; border-left: 2px solid var(--line); padding-left: 1.25rem; }
-    dl.timeline dt { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--teal); margin-top: 1.1rem; }
-    dl.timeline dt:first-child { margin-top: 0; }
-    dl.timeline dd { margin: 0.15rem 0 0; max-width: 38rem; }
-
-    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
-    footer p { margin: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
-  <header class="site">
-    <div class="wrap">
-      <h1>HIV Positivity</h1>
-      <p>Clear facts, less fear. Knowing the truth about HIV protects those living with it and everyone around them.</p>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="topline" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="wrap nav-bar">
+      <a class="brand" href="#top" aria-label="HIV Positivity home">
+        <img src="logo.svg" alt="">
+        <span>HIV <em>Positivity</em></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links" id="primaryNav">
+        <li><a href="#what-is-hiv">HIV basics</a></li>
+        <li><a href="#treatment">Treatment</a></li>
+        <li><a href="#prevention">Prevention</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a class="nav-cta" href="#myths-and-facts">Facts, not fear <span aria-hidden="true">↗</span></a></li>
+      </ul>
     </div>
   </header>
 
-  <div class="wrap layout">
-  <nav aria-label="On this page">
-    <ul>
-      <li><a href="#what-is-hiv">What is HIV?</a></li>
-      <li><a href="#origin">Where it came from</a></li>
-      <li><a href="#how-hiv-works">What it does</a></li>
-      <li><a href="#treatment">Treatment</a></li>
-      <li><a href="#transmission">How it spreads</a></li>
-      <li><a href="#prevention">Prevention</a></li>
-      <li><a href="#timeline">History</a></li>
-      <li><a href="#research">Latest research</a></li>
-      <li><a href="#myths-and-facts">Myths and facts</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section id="what-is-hiv">
-      <h2>What is HIV?</h2>
-      <p>
-        HIV stands for <strong>Human Immunodeficiency Virus</strong>. It is a virus that attacks the body's immune system,
-        the part of the body that fights off illness.
-      </p>
-      <p>
-        HIV is one of the most misunderstood viruses. Myths and rumours cause unnecessary panic and discrimination
-        against people living with it. Spreading accurate knowledge is the best way to end that.
-      </p>
-      <p>
-        HIV is among us. Many people in our community are living healthy, long lives with the virus. More awareness
-        is still needed, both to reduce new infections and to reduce the stigma people face.
-      </p>
-
-      <figure>
-        <img src="support.png" alt="People showing support for those living with HIV" width="640">
-      </figure>
-    </section>
-
-    <section id="origin">
-      <h2>Where did HIV come from?</h2>
-      <p>
-        Scientists have traced HIV back to animals. It is a <em>zoonosis</em>, meaning an infection that began in
-        animals and later passed to people. Its ancestor is <strong>SIV</strong> (simian immunodeficiency virus),
-        a virus that infects monkeys and apes in Africa.
-      </p>
-      <p>
-        There are two main types of HIV, and each came from a different animal:
-      </p>
-      <ul class="plain">
-        <li>
-          <strong>HIV-1</strong> is the type behind most infections worldwide. Its closest relatives are SIV found in
-          chimpanzees (SIVcpz) and, for a few rare groups, in gorillas (SIVgor), in forests of Cameroon and neighbouring countries.
-        </li>
-        <li>
-          <strong>HIV-2</strong> came from SIV in sooty mangabeys, a monkey of West Africa. It is less easily passed on
-          and is found mostly in West Africa.
-        </li>
-      </ul>
-      <p>
-        The jump from animal to human happened on <em>several separate occasions</em>, which is why HIV-1 has four
-        groups (M, N, O and P). Only group M spread across the world. The others stayed mostly in Central Africa.
-      </p>
-      <h3>How did the virus cross over?</h3>
-      <p>
-        The most widely accepted explanation is the &ldquo;hunter&rdquo; theory. People hunted and butchered chimpanzees
-        for meat, and a cut on the hand could let infected blood enter the person's body. Usually the body would
-        fight off an animal virus like SIV. On a few rare occasions, the virus adapted to its new human host and became HIV.
-      </p>
-      <h3>When and where did the pandemic begin?</h3>
-      <p>
-        Genetic studies suggest that HIV-1 group M began spreading in humans around <strong>1920</strong> in
-        Kinshasa, then part of the Belgian Congo (today the Democratic Republic of the Congo). The oldest HIV sample
-        scientists have found comes from a blood sample taken in Kinshasa in 1959.
-      </p>
-      <p>
-        For decades the virus spread slowly. Researchers think a mix of factors then helped it take off: rapid city growth,
-        new railways that moved large numbers of people, and big changes in society in the 1950s and 1960s. From
-        Central Africa it later reached the rest of the world.
-      </p>
-      <div class="note">
-        <p>
-          <strong>Nobody is to blame.</strong> A virus crossing between species is a natural event, and it says nothing
-          about any person, group or country today. Be wary of rumours that HIV was created on purpose or spread
-          through a vaccine. Scientific evidence does not support these claims.
-        </p>
+  <div id="top" class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">Knowledge is care</span>
+        <h1>Clear facts.<br>More <span class="accent">hope.</span></h1>
+        <p class="hero-copy">HIV is a health condition, not a reason for shame. Learn what’s true, understand your options, and help make stigma a thing of the past.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#what-is-hiv">Explore the facts <span aria-hidden="true">→</span></a>
+          <a class="btn btn-secondary" href="#prevention">Know your options <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-note"><span class="heart" aria-hidden="true">♥</span> Respect every person. Replace rumours with reliable information.</div>
       </div>
-    </section>
-
-    <section id="how-hiv-works">
-      <h2>What HIV does to the body</h2>
-      <p>
-        The immune system uses white blood cells called <strong>CD4 cells</strong> to fight infections. HIV enters these
-        cells, makes copies of itself and destroys them. Over time, with no treatment, the body has fewer and fewer CD4
-        cells and can no longer fight off illnesses that a healthy body would handle easily.
-      </p>
-      <p>
-        <strong>AIDS</strong> (Acquired Immunodeficiency Syndrome) is the most advanced stage of HIV infection. HIV and AIDS
-        are not the same thing. A person with HIV does not have AIDS, and with treatment most people never reach
-        that stage.
-      </p>
-    </section>
-
-    <section id="treatment">
-      <h2>Treatment works</h2>
-      <p>
-        The body cannot get rid of HIV, and there is currently no cure. Once a person has HIV, they have it for life.
-        The good news is that effective treatment exists. It is a daily medicine called
-        <strong>antiretroviral therapy (ART)</strong>.
-      </p>
-      <p>
-        Taken as prescribed, ART lowers the amount of virus in the blood (the <em>viral load</em>) to a very low level.
-        This is called <em>viral suppression</em>. When the level is so low that a standard lab test cannot detect it,
-        the person has an <em>undetectable viral load</em>.
-      </p>
-
-      <div class="callout">
-        <p class="big">U = U</p>
-        <p>
-          <strong>Undetectable = Untransmittable.</strong> People who take their HIV medicine as prescribed and keep an
-          undetectable viral load can live long, healthy lives and cannot pass HIV to their partners through sex.
-        </p>
+      <div class="hero-art reveal" aria-label="Positive message about knowledge and care">
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="hero-card">
+          <div class="card-mark"><img src="logo.svg" alt=""></div>
+          <div class="mini-label">The message that matters</div>
+          <h2>HIV does not define you.</h2>
+          <p>With treatment, support and accurate information, people living with HIV can build full, healthy lives.</p>
+        </div>
+        <div class="floating-pill pill-top">❤️ Care without judgement<span>Everyone deserves respect</span></div>
+        <div class="floating-pill pill-bottom">Knowledge = power<span>Facts help protect us all</span></div>
       </div>
+    </div>
+  </div>
 
-      <p>
-        For more information, visit
-        <a href="https://www.hiv.gov" target="_blank" rel="noopener noreferrer">HIV.gov</a>,
-        the official website of the U.S. Department of Health and Human Services.
-      </p>
-    </section>
+  <div class="trust-strip">
+    <div class="wrap trust-grid">
+      <div class="trust-item"><span class="trust-icon" aria-hidden="true">✦</span><span>Evidence-led information</span></div>
+      <div class="trust-item"><span class="trust-icon" aria-hidden="true">♡</span><span>People before stigma</span></div>
+      <div class="trust-item"><span class="trust-icon" aria-hidden="true">＋</span><span>Prevention and care</span></div>
+    </div>
+  </div>
 
-    <section id="transmission">
-      <h2>How HIV is passed on</h2>
-      <p>HIV spreads only through certain body fluids, and only in specific ways:</p>
-      <ul class="plain">
-        <li>Sex without a condom or other protection</li>
-        <li>Sharing needles or syringes</li>
-        <li>From a mother to her baby during pregnancy, birth or breastfeeding. With the right treatment, this risk is very low.</li>
+  <div class="wrap page-grid">
+    <aside class="side-nav" aria-label="On this page">
+      <p class="side-title">Explore the guide</p>
+      <ul>
+        <li><a href="#what-is-hiv">What is HIV?</a></li>
+        <li><a href="#origin">Where it came from</a></li>
+        <li><a href="#how-hiv-works">What it does</a></li>
+        <li><a href="#treatment">Treatment</a></li>
+        <li><a href="#transmission">How it spreads</a></li>
+        <li><a href="#prevention">Prevention</a></li>
+        <li><a href="#timeline">History</a></li>
+        <li><a href="#research">Latest research</a></li>
+        <li><a href="#myths-and-facts">Myths and facts</a></li>
       </ul>
-      <p>
-        HIV is <strong>not</strong> passed on by hugging, shaking hands, sharing food or cups, or sharing a toilet.
-      </p>
-    </section>
+    </aside>
 
-    <section id="prevention">
-      <h2>Prevention and testing</h2>
-      <p>HIV can be prevented. These are the main ways to protect yourself and others:</p>
-      <ul class="plain">
-        <li><strong>Test regularly.</strong> Testing is the only way to know your status. Early treatment protects your health and your partners.</li>
-        <li><strong>Use condoms</strong> correctly every time you have sex.</li>
-        <li><strong>Never share needles or syringes.</strong></li>
-        <li><strong>PrEP</strong> is a medicine that people who do not have HIV can take to lower their risk of getting it.</li>
-        <li><strong>PEP</strong> is emergency medicine taken after a possible exposure. It must be started as soon as possible, within 72 hours.</li>
-        <li><strong>Pregnant women</strong> with HIV who take treatment can greatly lower the chance of passing HIV to their baby.</li>
-      </ul>
-      <p>
-        If you are worried about a possible exposure, visit a nearby clinic or health worker for advice and a test.
-      </p>
-    </section>
+    <main id="main-content">
+      <section class="content-section reveal" id="what-is-hiv">
+        <div class="section-kicker">01 · Start with the basics</div>
+        <h2>What is HIV?</h2>
+        <p class="intro-copy">HIV stands for <strong>Human Immunodeficiency Virus</strong>. It is a virus that attacks the body's immune system, the part of the body that fights off illness.</p>
+        <p>HIV is one of the most misunderstood viruses. Myths and rumours cause unnecessary panic and discrimination against people living with it. Spreading accurate knowledge is the best way to end that.</p>
+        <p>HIV is among us. Many people in our community are living healthy, long lives with the virus. More awareness is still needed, both to reduce new infections and to reduce the stigma people face.</p>
+        <div class="info-grid">
+          <article class="info-card"><div class="icon" aria-hidden="true">♡</div><h3>People are more than a diagnosis</h3><p>HIV status does not define someone's worth, relationships, ambitions or future.</p></article>
+          <article class="info-card"><div class="icon" aria-hidden="true">✚</div><h3>Care makes a difference</h3><p>Testing, effective treatment and support help people protect their health and live well.</p></article>
+        </div>
+      </section>
 
-    <section id="timeline">
-      <h2>A short history</h2>
-      <dl class="timeline">
-        <dt>About 1920</dt>
-        <dd>HIV-1 group M begins to spread among people in Kinshasa.</dd>
-        <dt>1981</dt>
-        <dd>Doctors in the United States report the first recognised cases of what would later be called AIDS.</dd>
-        <dt>1983&ndash;1986</dt>
-        <dd>Scientists identify the virus that causes AIDS, and in 1986 it is named HIV.</dd>
-        <dt>1996</dt>
-        <dd>Combination antiretroviral therapy becomes available, turning HIV from a usually fatal illness into a manageable condition.</dd>
-        <dt>Today</dt>
-        <dd>People on effective treatment live long, healthy lives, and U=U shows that they cannot pass HIV on through sex.</dd>
-      </dl>
-    </section>
+      <section class="content-section reveal" id="origin">
+        <div class="section-kicker">02 · Our shared history</div>
+        <h2>Where did HIV come from?</h2>
+        <p>Scientists have traced HIV back to animals. It is a <em>zoonosis</em>, meaning an infection that began in animals and later passed to people. Its ancestor is <strong>SIV</strong> (simian immunodeficiency virus), a virus that infects monkeys and apes in Africa.</p>
+        <p>There are two main types of HIV, and each came from a different animal:</p>
+        <div class="info-grid">
+          <article class="info-card"><div class="icon" aria-hidden="true">🌍</div><h3>HIV-1</h3><p>HIV-1 is the type behind most infections worldwide. Its closest relatives are SIV found in chimpanzees (SIVcpz) and, for a few rare groups, in gorillas (SIVgor), in forests of Cameroon and neighbouring countries.</p></article>
+          <article class="info-card"><div class="icon" aria-hidden="true">🌿</div><h3>HIV-2</h3><p>HIV-2 came from SIV in sooty mangabeys, a monkey of West Africa. It is less easily passed on and is found mostly in West Africa.</p></article>
+        </div>
+        <p>The jump from animal to human happened on <em>several separate occasions</em>, which is why HIV-1 has four groups (M, N, O and P). Only group M spread across the world. The others stayed mostly in Central Africa.</p>
+        <h3>How did the virus cross over?</h3>
+        <p>The most widely accepted explanation is the “hunter” theory. People hunted and butchered chimpanzees for meat, and a cut on the hand could let infected blood enter the person's body. Usually the body would fight off an animal virus like SIV. On a few rare occasions, the virus adapted to its new human host and became HIV.</p>
+        <h3>When and where did the pandemic begin?</h3>
+        <p>Genetic studies suggest that HIV-1 group M began spreading in humans around <strong>1920</strong> in Kinshasa, then part of the Belgian Congo (today the Democratic Republic of the Congo). The oldest HIV sample scientists have found comes from a blood sample taken in Kinshasa in 1959.</p>
+        <p>For decades the virus spread slowly. Researchers think a mix of factors then helped it take off: rapid city growth, new railways that moved large numbers of people, and big changes in society in the 1950s and 1960s. From Central Africa it later reached the rest of the world.</p>
+        <div class="note"><span class="note-icon" aria-hidden="true">✳</span><p><strong>Nobody is to blame.</strong> A virus crossing between species is a natural event, and it says nothing about any person, group or country today. Be wary of rumours that HIV was created on purpose or spread through a vaccine. Scientific evidence does not support these claims.</p></div>
+      </section>
 
-    <section id="research">
-      <h2>Latest research</h2>
-      <p>
-        HIV science is moving fast. These are the main developments reported in 2026, mostly at the
-        AIDS 2026 conference. Many are still being tested and are <strong>not yet available</strong>
-        as everyday care.
-      </p>
+      <section class="content-section reveal" id="how-hiv-works">
+        <div class="section-kicker">03 · Inside the body</div>
+        <h2>What HIV does to the body</h2>
+        <p>The immune system uses white blood cells called <strong>CD4 cells</strong> to fight infections. HIV enters these cells, makes copies of itself and destroys them. Over time, with no treatment, the body has fewer and fewer CD4 cells and can no longer fight off illnesses that a healthy body would handle easily.</p>
+        <p><strong>AIDS</strong> (Acquired Immunodeficiency Syndrome) is the most advanced stage of HIV infection. HIV and AIDS are not the same thing. A person with HIV does not have AIDS, and with treatment most people never reach that stage.</p>
+      </section>
 
-      <h3>Prevention: an injection twice a year</h3>
-      <p>
-        Lenacapavir is an injection that protects against HIV for six months at a time. In the large PURPOSE 1 trial,
-        2 of 2,134 people taking it got HIV, compared with 77 of 3,204 people taking a daily pill. In follow-up
-        studies, about 95% of participants chose to keep using the injection rather than go back to daily pills.
-        People gave convenience, fewer pills and less stigma as reasons.
-      </p>
-      <p>
-        Other options are coming too. A once-monthly PrEP pill called MK-8527 is in late-stage trials, and the
-        dapivirine vaginal ring is a monthly option that women control themselves.
-      </p>
+      <section class="content-section reveal" id="treatment">
+        <div class="section-kicker">04 · Effective care</div>
+        <h2>Treatment works</h2>
+        <p>The body cannot get rid of HIV, and there is currently no cure. Once a person has HIV, they have it for life. The good news is that effective treatment exists. It is a daily medicine called <strong>antiretroviral therapy (ART)</strong>.</p>
+        <p>Taken as prescribed, ART lowers the amount of virus in the blood (the <em>viral load</em>) to a very low level. This is called <em>viral suppression</em>. When the level is so low that a standard lab test cannot detect it, the person has an <em>undetectable viral load</em>.</p>
+        <div class="callout">
+          <p class="big">U = U</p>
+          <p><strong>Undetectable = Untransmittable.</strong> People who take their HIV medicine as prescribed and keep an undetectable viral load can live long, healthy lives and cannot pass HIV to their partners through sex.</p>
+        </div>
+        <p>For more information, visit <a href="https://www.hiv.gov" target="_blank" rel="noopener noreferrer">HIV.gov</a>, the official website of the U.S. Department of Health and Human Services.</p>
+      </section>
 
-      <h3>Is lenacapavir available in Kenya?</h3>
-      <p>
-        Yes. Kenya's Pharmacy and Poisons Board approved it in January 2026, and the national rollout began on
-        26 February 2026. It is offered free at public health facilities, alongside daily oral PrEP and condoms.
-      </p>
-      <p>
-        The rollout is happening in three phases. The first phase covered 15 counties with the highest HIV burden, and
-        coverage is meant to grow until it reaches all 47 counties. If you are outside the early counties, ask at
-        your nearest public health facility whether it is available yet.
-      </p>
-      <p>
-        Not everyone qualifies. You must test negative for HIV and have had no possible exposure in the last 72 hours.
-        Tell the health worker about any other medicine you take, including TB treatment, because some medicines can interact with it.
-      </p>
-      <p>
-        Sources:
-        <a href="https://www.health.go.ke/kenya-receives-first-shipment-long-acting-hiv-prevention-drug-lenacapavir" target="_blank" rel="noopener noreferrer">Kenya Ministry of Health</a>,
-        <a href="https://www.dawan.africa/news/kenya-launches-national-rollout-of-long-acting-hiv-prevention-injection-lenacapavir" target="_blank" rel="noopener noreferrer">national rollout launch</a>,
-        <a href="https://www.citizen.digital/article/kenya-expands-hiv-prevention-options-as-lenacapavir-rollout-begins-thursday-n377958" target="_blank" rel="noopener noreferrer">Citizen Digital</a>.
-      </p>
+      <section class="content-section reveal" id="transmission">
+        <div class="section-kicker">05 · Know the facts</div>
+        <h2>How HIV is passed on</h2>
+        <p class="intro-copy">HIV spreads only through certain body fluids, and only in specific ways:</p>
+        <ul class="plain">
+          <li>Sex without a condom or other protection</li>
+          <li>Sharing needles or syringes</li>
+          <li>From a mother to her baby during pregnancy, birth or breastfeeding. With the right treatment, this risk is very low.</li>
+        </ul>
+        <div class="note"><span class="note-icon" aria-hidden="true">♡</span><p>HIV is <strong>not</strong> passed on by hugging, shaking hands, sharing food or cups, or sharing a toilet. Everyday contact is safe.</p></div>
+      </section>
 
-      <h3>Treatment: from daily pills to weekly pills</h3>
-      <p>
-        Researchers are working to make treatment less of a daily burden. Detailed results from two trials of a
-        once-a-week pill that combines islatravir and lenacapavir were presented in 2026. A weekly pill looks
-        close, but it still needs final approval.
-      </p>
+      <section class="content-section reveal" id="prevention">
+        <div class="section-kicker">06 · Take care of yourself</div>
+        <h2>Prevention and testing</h2>
+        <p class="intro-copy">HIV can be prevented. These are the main ways to protect yourself and others:</p>
+        <div class="info-grid">
+          <article class="info-card"><div class="icon" aria-hidden="true">⌕</div><h3>Test regularly</h3><p>Testing is the only way to know your status. Early treatment protects your health and your partners.</p></article>
+          <article class="info-card"><div class="icon" aria-hidden="true">♡</div><h3>Use condoms</h3><p>Use condoms correctly every time you have sex.</p></article>
+          <article class="info-card"><div class="icon" aria-hidden="true">＋</div><h3>Ask about PrEP</h3><p>PrEP is a medicine that people who do not have HIV can take to lower their risk of getting it.</p></article>
+          <article class="info-card"><div class="icon" aria-hidden="true">⏱</div><h3>Know about PEP</h3><p>PEP is emergency medicine taken after a possible exposure. It must be started as soon as possible, within 72 hours.</p></article>
+        </div>
+        <ul class="plain">
+          <li><strong>Never share needles or syringes.</strong></li>
+          <li><strong>Pregnancy and HIV:</strong> pregnant women with HIV who take treatment can greatly lower the chance of passing HIV to their baby.</li>
+        </ul>
+        <div class="note"><span class="note-icon" aria-hidden="true">＋</span><p>If you are worried about a possible exposure, visit a nearby clinic or health worker for advice urgently. PEP must be started within 72 hours, and sooner is better.</p></div>
+      </section>
 
-      <h3>Towards a cure</h3>
-      <p>
-        Two more people were reported cured after stem-cell transplants. These transplants are risky and are only
-        done when someone also has a serious blood cancer, so they cannot be offered to most people with HIV.
-      </p>
-      <p>
-        A more promising path for many people uses <strong>broadly neutralising antibodies</strong>. These are
-        immune proteins that can recognise many kinds of HIV. In several studies, a good share of participants kept a
-        low or undetectable viral load for a long time without taking daily medicine. This is called remission.
-      </p>
+      <section class="content-section reveal" id="timeline">
+        <div class="section-kicker">07 · A timeline</div>
+        <h2>A short history</h2>
+        <ol class="timeline">
+          <li><time>c. 1920</time><div><h3>Early spread</h3><p>HIV-1 group M begins to spread among people in Kinshasa.</p></div></li>
+          <li><time>1981</time><div><h3>First recognised AIDS cases</h3><p>Doctors in the United States report the first recognised cases of what would later be called AIDS.</p></div></li>
+          <li><time>1983–86</time><div><h3>The virus is identified</h3><p>Scientists identify the virus that causes AIDS, and in 1986 it is named HIV.</p></div></li>
+          <li><time>1996</time><div><h3>Combination therapy</h3><p>Combination antiretroviral therapy becomes available, turning HIV from a usually fatal illness into a manageable condition.</p></div></li>
+          <li><time>Today</time><div><h3>Living well with HIV</h3><p>People on effective treatment live long, healthy lives, and U=U shows that they cannot pass HIV on through sex when viral suppression is maintained.</p></div></li>
+        </ol>
+      </section>
 
-      <h3>Vaccines</h3>
-      <p>
-        There is still no HIV vaccine. Scientists report steady progress in teaching the immune system to make the
-        rare antibodies that protect against many kinds of HIV, including by giving carefully timed doses to steer
-        the immune response in the right direction.
-      </p>
+      <section class="content-section reveal" id="research">
+        <div class="section-kicker">08 · Science in progress</div>
+        <h2>Latest research</h2>
+        <p>HIV science is moving fast. These are the main developments reported in 2026, mostly at the AIDS 2026 conference. Many are still being tested and are <strong>not yet available</strong> as everyday care.</p>
 
-      <div class="note">
-        <p>
-          <strong>Funding matters.</strong> A survey presented at a major HIV conference in early 2026 found that
-          cuts to PEPFAR funding disrupted services at 47% of the clinics surveyed. New treatments only help when people can reach them.
-        </p>
-      </div>
+        <h3>Prevention: an injection twice a year</h3>
+        <p>Lenacapavir is an injection that protects against HIV for six months at a time. In the large PURPOSE 1 trial, 2 of 2,134 people taking it got HIV, compared with 77 of 3,204 people taking a daily pill. In follow-up studies, about 95% of participants chose to keep using the injection rather than go back to daily pills. People gave convenience, fewer pills and less stigma as reasons.</p>
+        <p>Other options are coming too. A once-monthly PrEP pill called MK-8527 is in late-stage trials, and the dapivirine vaginal ring is a monthly option that women control themselves.</p>
 
-      <p>
-        None of this changes today's best advice. Test regularly, use proven prevention, and anyone with HIV should keep
-        taking their medicine as prescribed. Research results can change quickly, so check with a health worker for what is available near you.
-      </p>
-      <p>
-        Sources:
-        <a href="https://www.iasociety.org/blog/aids-2026-key-takeaways" target="_blank" rel="noopener noreferrer">IAS, AIDS 2026 key takeaways</a>,
-        <a href="https://aidsmap.com/news/sep-2026/we-finally-understand-what-we-have-do-antibody-studies-point-way-hiv-cure" target="_blank" rel="noopener noreferrer">aidsmap, antibody studies and a cure</a>,
-        <a href="https://www.ajmc.com/view/croi-2026-celebrated-progress-looked-toward-the-future-of-hiv" target="_blank" rel="noopener noreferrer">AJMC, CROI 2026 summary</a>.
-        Information current as of October 2026.
-      </p>
-    </section>
+        <h3>Is lenacapavir available in Kenya?</h3>
+        <p>Kenya's Pharmacy and Poisons Board approved it in January 2026, and the national rollout began on 26 February 2026. It is offered free at public health facilities, alongside daily oral PrEP and condoms.</p>
+        <p>The rollout is happening in three phases. The first phase covered 15 counties with the highest HIV burden, and coverage is meant to grow until it reaches all 47 counties. If you are outside the early counties, ask at your nearest public health facility whether it is available yet.</p>
+        <p>Not everyone qualifies. You must test negative for HIV and have had no possible exposure in the last 72 hours. Tell the health worker about any other medicine you take, including TB treatment, because some medicines can interact with it.</p>
+        <p class="source-links">Sources: <a href="https://www.health.go.ke/kenya-receives-first-shipment-long-acting-hiv-prevention-drug-lenacapavir" target="_blank" rel="noopener noreferrer">Kenya Ministry of Health</a>, <a href="https://www.dawan.africa/news/kenya-launches-national-rollout-of-long-acting-hiv-prevention-injection-lenacapavir" target="_blank" rel="noopener noreferrer">national rollout launch</a>, <a href="https://www.citizen.digital/article/kenya-expands-hiv-prevention-options-as-lenacapavir-rollout-begins-thursday-n377958" target="_blank" rel="noopener noreferrer">Citizen Digital</a>.</p>
 
-    <section id="myths-and-facts">
-      <h2>Myths and facts</h2>
-      <div class="compare">
-        <div class="myths">
-          <h3>Myths</h3>
-          <ul>
+        <h3>Treatment: from daily pills to weekly pills</h3>
+        <p>Researchers are working to make treatment less of a daily burden. Detailed results from two trials of a once-a-week pill that combines islatravir and lenacapavir were presented in 2026. A weekly pill looks close, but it still needs final approval.</p>
+
+        <h3>Towards a cure</h3>
+        <p>Two more people were reported cured after stem-cell transplants. These transplants are risky and are only done when someone also has a serious blood cancer, so they cannot be offered to most people with HIV.</p>
+        <p>A more promising path for many people uses <strong>broadly neutralising antibodies</strong>. These are immune proteins that can recognise many kinds of HIV. In several studies, a good share of participants kept a low or undetectable viral load for a long time without taking daily medicine. This is called remission.</p>
+
+        <h3>Vaccines</h3>
+        <p>There is still no HIV vaccine. Scientists report steady progress in teaching the immune system to make the rare antibodies that protect against many kinds of HIV, including by giving carefully timed doses to steer the immune response in the right direction.</p>
+
+        <div class="note"><span class="note-icon" aria-hidden="true">✳</span><p><strong>Funding matters.</strong> A survey presented at a major HIV conference in early 2026 found that cuts to PEPFAR funding disrupted services at 47% of the clinics surveyed. New treatments only help when people can reach them.</p></div>
+        <p>None of this changes today's best advice. Test regularly, use proven prevention, and anyone with HIV should keep taking their medicine as prescribed. Research results can change quickly, so check with a health worker for what is available near you.</p>
+        <p class="source-links">Sources: <a href="https://www.iasociety.org/blog/aids-2026-key-takeaways" target="_blank" rel="noopener noreferrer">IAS, AIDS 2026 key takeaways</a>, <a href="https://aidsmap.com/news/sep-2026/we-finally-understand-what-we-have-do-antibody-studies-point-way-hiv-cure" target="_blank" rel="noopener noreferrer">aidsmap, antibody studies and a cure</a>, <a href="https://www.ajmc.com/view/croi-2026-celebrated-progress-looked-toward-the-future-of-hiv" target="_blank" rel="noopener noreferrer">AJMC, CROI 2026 summary</a>. Information current as of October 2026.</p>
+        <div class="note"><span class="note-icon" aria-hidden="true">ⓘ</span><p>Research findings and medicine availability can change. This page is educational and does not replace advice from a qualified health professional or Kenya's current public-health guidance.</p></div>
+      </section>
+
+      <section class="content-section reveal" id="myths-and-facts">
+        <div class="section-kicker">09 · Share the truth</div>
+        <h2>Myths and facts</h2>
+        <p class="intro-copy">Misinformation can cause real harm. Here are a few common claims worth correcting.</p>
+        <div class="myth-grid">
+          <article class="myth-card myths"><h3><span aria-hidden="true">✕</span> Myths</h3><ul>
             <li>HIV is curable.</li>
             <li>HIV is a curse.</li>
             <li>You can get HIV from hugging or sharing a cup.</li>
             <li>HIV and AIDS are the same thing.</li>
-          </ul>
-        </div>
-        <div class="facts">
-          <h3>Facts</h3>
-          <ul>
+          </ul></article>
+          <article class="myth-card facts"><h3><span aria-hidden="true">✓</span> Facts</h3><ul>
             <li>HIV can be prevented.</li>
             <li>HIV can be managed with treatment.</li>
             <li>HIV is a virus that began in animals and spread between people. It is not a curse.</li>
             <li>Everyday contact is safe.</li>
-            <li>AIDS is the late stage of HIV, and treatment prevents it.</li>
-          </ul>
+            <li>AIDS is the late stage of HIV, and treatment prevents it for most people.</li>
+          </ul></article>
         </div>
-      </div>
-    </section>
-  </main>
+        <p class="section-end">Share knowledge. Lead with compassion.</p>
+      </section>
+    </main>
   </div>
 
-  <footer>
+  <footer class="footer">
     <div class="wrap">
-      <p>&copy; 2026 Malcolm Ochieng'. All rights reserved.</p>
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="#top"><img src="logo.svg" alt=""><span>HIV <em>Positivity</em></span></a>
+          <p>Clear facts, less fear. A public education resource built around knowledge, dignity and care.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#what-is-hiv">HIV basics</a><a href="#prevention">Prevention</a><a href="#research">Research</a><a href="https://www.hiv.gov" target="_blank" rel="noopener noreferrer">HIV.gov ↗</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Malcolm Ochieng'. All rights reserved.</span>
+        <span>Educational information only · Consult a qualified health professional for personal advice.</span>
+      </div>
     </div>
   </footer>
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+  <script>
+    (() => {
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('primaryNav');
+      const backTop = document.getElementById('backTop');
+      const navLinks = [...document.querySelectorAll('.nav-links a, .side-nav a')];
+
+      function closeMenu() {
+        nav.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+      menuToggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        document.body.classList.toggle('menu-open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      });
+      navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealItems = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reducedMotion) {
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach(item => revealObserver.observe(item));
+      } else {
+        revealItems.forEach(item => item.classList.add('in-view'));
+      }
+
+      const sections = [...document.querySelectorAll('main section[id]')];
+      if ('IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              document.querySelectorAll('.side-nav a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+              });
+            }
+          });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+        sections.forEach(section => sectionObserver.observe(section));
+      }
+
+      window.addEventListener('scroll', () => {
+        backTop.classList.toggle('visible', window.scrollY > 600);
+      }, { passive: true });
+      backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
+      window.addEventListener('resize', () => { if (window.innerWidth > 780) closeMenu(); });
+    })();
+  </script>
 </body>
 </html>
+
